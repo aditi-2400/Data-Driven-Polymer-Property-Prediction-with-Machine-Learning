@@ -74,8 +74,8 @@ See [requirements.txt](requirements.txt) for the full list.
 
 ## 🏆 Kaggle Results
 
-- **Leaderboard Score:** 0.307 (multi-target MAE)
-- **Ranking:** ~1400 out of thousands globally
+- **Leaderboard Score:** 0.083 (multi-target MAE)
+- **Ranking:** ~1200 out of thousands globally
 
 ---
 
