@@ -11,8 +11,8 @@ This repository contains my solution for the [NeurIPS 2025 Open Polymer Predicti
   - Variance and correlation filtering
   - Supervised feature selection
 - Developed a **target imputation module** using Neural Networks and iterative imputation to handle >50% missing labels for some targets.
-- Trained and ensembled **LightGBM, XGBoost, Random Forest, and Extra Trees** models with K-fold cross-validation.
-- Achieved a **0.307 MAE leaderboard score** (~1400th place out of thousands globally).
+- Trained and ensembled **LightGBM, XGBoost** models with K-fold cross-validation.
+- Achieved a **0.083 MAE leaderboard score** (~1200th place out of thousands globally).
 
 ---
 
