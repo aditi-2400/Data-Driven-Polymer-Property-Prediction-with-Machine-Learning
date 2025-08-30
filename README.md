@@ -19,7 +19,7 @@ This repository contains my solution for the [NeurIPS 2025 Open Polymer Predicti
 ## 📂 Directory Structure
 
 ```
-polymer-ml/
+./
 ├─ README.md
 ├─ requirements.txt
 ├─ configs/
