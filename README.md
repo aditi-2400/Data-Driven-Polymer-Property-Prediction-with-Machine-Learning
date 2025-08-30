@@ -19,11 +19,56 @@ This repository contains my solution for the [NeurIPS 2025 Open Polymer Predicti
 ## 📂 Directory Structure
 
 ```
-polymer-prediction/
-├── data/               # Train/test CSVs (Kaggle restricted, not included)
-├── notebooks/          # Jupyter notebooks for EDA, feature engineering, etc.
-├── src/                # Core Python modules
-├── submissions/        # Submission CSVs
+polymer-ml/
+├─ README.md
+├─ requirements.txt
+├─ configs/
+│  ├─ config.yaml                  # paths, feature flags, selection top_k, thresholds
+│  ├─ tuned_xgb.json               # your per-target tuned XGB params (from Optuna)
+├─ data/
+│  ├─ raw/                         # train.csv, test.csv, supplement files
+│  ├─ interim/                     # canonical csvs, merged extras
+│  └─ processed/                   # features (parquet/npy), masks, state pickles
+├─ notebooks/
+│  └─ polymer-lgbm-xgb.ipynb       # your original notebook (archived)
+├─ scripts/
+│  ├─ make_features.py             # build RDKit descriptors (+ optional graph feats)
+│  ├─ train_xgb.py                 # KFold training using tuned per-target XGB
+│  ├─ predict.py                   # load fold models and create submission.csv
+│  └─ tune_xgb.py                  # Optuna tuning per target (optional)
+└─ src/
+   ├─ __init__.py
+   ├─ data/
+   │  ├─ __init__.py
+   │  ├─ io.py                     # load/validate CSVs, canonicalize smiles
+   │  └─ augment.py                # merge extra datasets into train
+   ├─ featurization/
+   │  ├─ __init__.py
+   │  ├─ rdkit_feats.py            # descriptors, Morgan (optional), graph features
+   │  └─ graphs.py                 # graph_diameter, avg_shortest_path, num_cycles
+   ├─ preprocessing/
+   │  ├─ __init__.py
+   │  ├─ preprocessor.py           # fit/transform (variance/corr/scale) + state
+   │  ├─ selection.py              # per_target_supervised_selection
+   │  └─ imputation.py             # impute_targets_adaptive (NN/simple)
+   ├─ models/
+   │  ├─ __init__.py
+   │  ├─ tuned_params.py           # loads configs/tuned_xgb.json
+   │  ├─ xgb.py                    # make_xgb_model, kfold_train_xgb
+   │  ├─ lgbm.py                   # (kept optional) tune_lgbm_mae helpers
+   │  └─ infer.py                  # predict_and_make_submission_xgb (and generic)
+   ├─ tuning/
+   │  ├─ __init__.py
+   │  ├─ optuna_xgb.py             # tune_xgb_mae
+   │  └─ optuna_lgbm.py            # tune_lgbm_mae
+   ├─ viz/
+   │  ├─ __init__.py
+   │  └─ plots.py                  # plot_corr, target_corr, distributions, overlays
+   └─ utils/
+      ├─ __init__.py
+      ├─ metrics.py
+      ├─ logging.py
+      └─ seed.py
 ```
 
 ---
