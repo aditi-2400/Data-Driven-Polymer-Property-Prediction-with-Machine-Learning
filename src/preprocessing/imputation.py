@@ -54,7 +54,7 @@ def impute_targets_adaptive(
         """
         MLP with L2 regularization + Dropout (and optional BatchNorm).
         """
-        from tensorflow.keras import models, layers, optimizers, regularizers, initializers
+        from tensorflow.keras import models, layers, optimizers, regularizers, initializers  # type: ignore
     
         reg  = regularizers.l2(l2) if l2 and l2 > 0 else None
         init = initializers.HeNormal()
