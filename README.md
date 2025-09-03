@@ -55,15 +55,11 @@ This repository contains my solution for the [NeurIPS 2025 Open Polymer Predicti
    │  ├─ __init__.py
    │  ├─ tuned_params.py           # loads configs/tuned_xgb.json
    │  ├─ xgb.py                    # make_xgb_model, kfold_train_xgb
-   │  ├─ lgbm.py                   # (kept optional) tune_lgbm_mae helpers
    │  └─ infer.py                  # predict_and_make_submission_xgb (and generic)
    ├─ tuning/
-   │  ├─ __init__.py
-   │  ├─ optuna_xgb.py             # tune_xgb_mae
-   │  └─ optuna_lgbm.py            # tune_lgbm_mae
+   │  ├─ tuning_xgb.py             # tune_xgb_mae
    ├─ viz/
-   │  ├─ __init__.py
-   │  └─ plots.py                  # plot_corr, target_corr, distributions, overlays
+   │  └─ target_dist.py                  # plot_corr, target_corr, distributions, overlays
    └─ utils/
       ├─ __init__.py
       ├─ metrics.py
@@ -114,7 +110,14 @@ This repository contains my solution for the [NeurIPS 2025 Open Polymer Predicti
 - PyTorch / TensorFlow (for NN imputation)
 
 See [requirements.txt](requirements.txt) for the full list.
+## Quickstart
+```bash
+pip install -r requirements.txt
 
+# edit configs/config.yaml paths (train/test/supplements)
+python scripts/make_features.py --config configs/config.yaml
+python scripts/train_xgb.py --config configs/config.yaml
+python scripts/predict.py --config configs/config.yaml -o submission.csv
 ---
 
 ## 🏆 Kaggle Results
